@@ -8,7 +8,8 @@ TBA
 
 ## Tools
 
-TBA
+* OpenWeather API
+* Bootstrap 5.8.1
 
 ## Screenshots
 
