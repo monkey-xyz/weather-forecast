@@ -1,13 +1,13 @@
 .custom-header {
     background: linear-gradient(0deg, rgba(232,232,232,1) 0%, rgba(87,158,179,1) 100%);
     box-shadow: 0 2px 0 white,
-    0 10px 13px rgb(190, 190, 190);
+    0 6px 13px rgb(190, 190, 190);
     border-bottom: 1px rgb(190, 190, 190) solid;
 }
 
 .custom-side {
     box-shadow: 2px 0 0 white,
-    10px 0 13px rgb(190, 190, 190);
+    6px 0 13px rgb(190, 190, 190);
 }
 
 #split {

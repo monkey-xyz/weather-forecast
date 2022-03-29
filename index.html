@@ -15,18 +15,27 @@
               <h1>Weather Dashboard</h1>
             </div>
         </header>
-        <div class="col-3 custom-side h-100">
-            <form class="d-grid gap-4 mx-auto p-3">
-                <label for="city-search" class="form-label h2">Find Your City:</label>
-                <input id="city-search" class="form-control" type="text" placeholder="Enter your City"/>
-                <button type="submit" class="btn bg-info text-white">Search</button>
-            </form>
-            <hr id="split">
-            <div id="search-history">
-            </div>
-        </div>
+        <main class="mh-100 d-flex flex-row">
 
-        <h2>Upcoming 5-Day Forecast:</h2>
+            <div class="col-3 custom-side h-auto">
+                <form class="d-grid gap-4 mx-auto p-3">
+                    <label for="city-search" class="form-label h2">Find Your City:</label>
+                    <input id="city-search" class="form-control" type="text" placeholder="Enter your City"/>
+                    <button type="submit" class="btn bg-info text-white">Search</button>
+                </form>
+                 
+                <hr id="split">
+
+                <div id="search-history">
+
+                </div>
+            </div>
+
+            <div id="forecast-info" class="col-9">
+            <h2>Upcoming 5-Day Forecast:</h2>
+            </div>
+
+        </main>
     </body>
 
 </html>
