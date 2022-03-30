@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="./assets/css/style.css">
         <title>Weather Dashboard</title>
     </head>
+
     <body>
         <header class="navbar custom-header inline-block">
             <div class="container-fluid justify-content-center">
@@ -31,8 +32,22 @@
                 </div>
             </div>
 
-            <div id="forecast-info" class="col-9">
-            <h2>Upcoming 5-Day Forecast:</h2>
+            <div id="forecast-info" class="col-9 justify-content-center">
+                <div id="current-weather" class="card today-weather w-auto">
+                    <div class="card-body">
+                        <h1 id="city-name"></h1>
+                        <img id="weather-icon" src=" ">
+                        <ul>
+                            <li id="weather-temp"></li>
+                            <li id="weather-wind"></li>
+                            <li id="weather-humid"></li>
+                            <li id="weather-uvi"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-flex flex-row" id="forecast-five">
+
+                </div>
             </div>
 
         </main>

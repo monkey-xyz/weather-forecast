@@ -14,3 +14,17 @@
     border-top: 4px solid rgb(59, 59, 59);
     border-radius: 5px;
 }
+
+.weather-entry {
+    width: 20%;
+    margin: .5%;
+}
+
+.today-weather {
+    margin: 2%;
+}
+
+ul {
+    list-style-type: none;
+    font-size: 20px;
+}
