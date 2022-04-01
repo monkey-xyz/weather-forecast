@@ -12,24 +12,24 @@ var submitCity = function (event) {
     if (city) {
         globalSearch(city);
 
+    } else {
+        alert("Please enter a city.")
     }
 }
 
 
 var globalSearch = function (city) {
-    var geoCodeApi = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + ',US&limit=5&appid=4956f3dda9aec433400a8f2f8bb5d4cd'
+    var geoCodeApi = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=5&appid=4956f3dda9aec433400a8f2f8bb5d4cd'
 
     fetch(geoCodeApi)
     .then (function (response) {
         if (response.ok) {
             response.json().then(function (data) {
                 console.log(data);
-                for (var i = 0; i < data.length; i++) {
-                    var lon = data[i].lon;
-                    var lat = data[i].lat;
+                var lon = data[0].lon;
+                var lat = data[0].lat;
 
-                    weatherSearch(lat,lon);
-               }
+                weatherSearch(lat,lon);
             });
         } else {
             alert("Please enter a real city name.")
@@ -41,7 +41,7 @@ var globalSearch = function (city) {
 };
 
 var weatherSearch = function (lat, lon) {
-    var weatherApi = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=minutely,hourly,alerts&appid=4956f3dda9aec433400a8f2f8bb5d4cd'
+    var weatherApi = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + lat + '&lon=' + lon + '&exclude=minutely,hourly,alerts&units=imperial&appid=4956f3dda9aec433400a8f2f8bb5d4cd'
 
     fetch(weatherApi)
     .then (function (response) {
@@ -49,30 +49,30 @@ var weatherSearch = function (lat, lon) {
             console.log(response);
             response.json().then(function (data) {
                 console.log(data);
-                todaysForecast(data.current)
+                todaysForecast(data);
             })
         }
     })
 };
 
-var todaysForecast = function(data) {
+var todaysForecast = function(current) {
     var cityHeading = document.querySelector("#city-name");
     var temperature = document.querySelector("#weather-temp");
     var wind = document.querySelector("#weather-wind");
     var humidity = document.querySelector("#weather-humid");
     var uvIndex = document.querySelector("#weather-uvi");
-    var weatherIcon = document.querySelector("#weather-icon")
+    var weatherIcon = document.querySelector("#weather-icon");
 
     cityHeading.textContent = cityInput.value.trim();
 
-    for (var i = 0; i < data.length;) {
-        temperature.textContent = "Temp: " + data[i].current.temp + "°F";
-        wind.textContent = "Wind: " + data[i].current.wind_speed + "MPH";
-        humidity.textContent = "Humidity: " + data[i].current.humidity + "%";
-        weatherIcon.src = "http://openweathermap.org/img/wn/" + data[i].current.weather.icon + ".png";
-        uvIndex.textContent = "UV Index: " + data[i].current.uvi;
+    document.querySelector("#weather-info").setAttribute("display","block")
+
+        temperature.textContent = "Temp: " + current.temp + "°F";
+        wind.textContent = "Wind: " + current.wind_speed + "MPH";
+        humidity.textContent = "Humidity: " + current.humidity + "&deg;";
+        weatherIcon.src = "http://openweathermap.org/img/wn/" + current.weather.icon ;
+        uvIndex.textContent = "UV Index: " + current.uvi;
         cityName.textContent = cityInput.value;
-    }
 };
 
 

@@ -1,18 +1,144 @@
-.custom-header {
-    background: linear-gradient(0deg, rgba(232,232,232,1) 0%, rgba(87,158,179,1) 100%);
-    box-shadow: 0 2px 0 white,
-    0 10px 13px rgb(190, 190, 190);
-    border-bottom: 1px rgb(190, 190, 190) solid;
+@import url('https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap');
+
+:root {
+    --gray: rgb(190, 190, 190);
+    --black: black;
+    --white: white;
 }
 
-.custom-side {
-    box-shadow: 2px 0 0 white,
-    10px 0 13px rgb(190, 190, 190);
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#heading {
+    box-shadow: 0 2px 0 var(--white),
+    0 10px 13px rgb(223, 223, 223);
+    border-bottom: 1px rgb(190, 190, 190) solid;
+    font-size: 40px;
+    position: relative;
+    background: var(--white);
+}
+
+h1::after {
+    content:attr(data-descr);
+    position: absolute;
+    font-size: 15px;
+    top: 30px;
+    left: 50em;
+}
+
+h1, h2, h3 {
+    font-family: 'Sawarabi Gothic', sans-serif;
+    margin: 0 10px;
+}
+
+main {
+    height: 100%;
+}
+
+form {
+    margin: 20px auto;
+    font-size: 30px;
+    text-align: center;
+    width: 100%;
+}
+
+form input, button {
+    display: block;
+    font-size: 25px;
+    margin: 10px auto;
+}
+
+form input {
+    width: 50%;
+}
+
+form button {
+    border-left: rgb(0, 89, 255) solid 4px;
+    border-radius: 5px;
+    border-bottom: none;
+    border-right: none;
+    border-top: none;
+    transition: background .2s ease-out;
+    width: 30%;
+}
+
+form button:hover {
+    background: rgb(0, 89, 255);
+}
+
+form button:active {
+    background: rgb(0, 255, 128);
+}
+
+#city-container {
+    width: 30%;
+    height: 700px;
+    z-index: 2;
+    background: var(--white);
+    border-right: 1px var(--gray) solid;
 }
 
 #split {
     border-top: 4px solid rgb(59, 59, 59);
     border-radius: 5px;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+}
+
+#forecast-info {
+    width: 70%;
+    height: 600px;
+    position: relative;
+    right: 0;
+}
+
+#forecast-five {
+    display: flex;
+    flex-direction: row;
+}
+
+#current-weather {
+    width: 95%;
+    height: 45%;
+    margin: 2.5% auto;
+    background: var(--gray);
+    box-shadow: 2px 2px var(--white),
+    -2px -2px var(--white),
+    4px -4px var(--gray),
+    -4px 4px var(--gray),
+    4px 4px var(--gray),
+    -4px -4px var(--gray);
+    position: relative;
+}
+
+#current-weather h1 {
+    font-size: 3em;
+    -webkit-text-stroke-width: .05px;
+    -webkit-text-stroke-color: var(--white);
+    text-shadow: -1px 1px 0 var(--black);
+}
+
+#weather-info {
+    background: rgb(151, 151, 151);
+    font-size: 33px;
+    width: 80%;
+    height: auto;
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    right: 0;
+    padding-left: 0;
+}
+
+#weather-info li {
+    margin: 5px;
 }
 
 .weather-entry {
