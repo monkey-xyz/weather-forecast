@@ -56,7 +56,7 @@ form input {
     width: 50%;
 }
 
-form button {
+button {
     border-left: rgb(0, 89, 255) solid 4px;
     border-radius: 5px;
     border-bottom: none;
@@ -66,12 +66,16 @@ form button {
     width: 30%;
 }
 
-form button:hover {
+button:hover {
     background: rgb(0, 89, 255);
 }
 
-form button:active {
+button:active {
     background: rgb(0, 255, 128);
+}
+
+.city-button {
+    width: 70%;
 }
 
 #city-container {
@@ -89,7 +93,8 @@ form button:active {
 
 .flex {
     display: flex;
-    flex-direction: row;
+    flex-direction: row wrap;
+    box-sizing: initial;
 }
 
 #forecast-info {
@@ -100,8 +105,10 @@ form button:active {
 }
 
 #forecast-five {
-    display: flex;
-    flex-direction: row;
+    display: inline-flex;
+    width: 53%;
+    align-content: flex-end;
+    margin-left: 1.9%;
 }
 
 #current-weather {
@@ -126,6 +133,38 @@ form button:active {
 }
 
 #weather-info {
+    background: rgb(151, 151, 151);
+    font-size: 33px;
+    width: 80%;
+    height: auto;
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    right: 0;
+    padding-left: 0;
+}
+
+.card h2 {
+    font-size: 25px;
+    border-bottom: var(--black) 1px solid;
+}
+
+.hidden {
+    display: none;
+}
+
+.card {
+    border: var(--gray) 1px solid;
+    display: inline-block;
+    width: 50%;
+    height: 60%;
+    margin: 1%;
+    min-width: 34%;
+    box-shadow: 1px 1px 0 var(--white),
+    3px 3px 0 var(--gray);
+}
+
+.card-info {
     background: rgb(151, 151, 151);
     font-size: 33px;
     width: 80%;
