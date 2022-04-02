@@ -4,6 +4,8 @@ var searchHistory = document.querySelector("#search-history");
 var cityInput = document.querySelector("#city-search")
 var fiveDayForecast = document.querySelector("#forecast-five");
 
+var locale = [];
+
 var submitCity = function (event) {
     event.preventDefault();
 
@@ -51,6 +53,7 @@ var weatherSearch = function (lat, lon) {
             response.json().then(function (data) {
                 console.log(data);
                 todaysForecast(data);
+                fiveForecast(data);
             })
         }
     })
@@ -67,7 +70,11 @@ var todaysForecast = function(data) {
     var uvIndex = document.querySelector("#weather-uvi");
     var weatherIcon = document.querySelector("#weather-icon");
 
-    cityHeading.textContent = cityInput.value.trim();
+    if (cityInput) {
+        cityHeading.textContent = cityInput.value.trim();
+    } else {
+        cityHeading.textContent = document.querySelector(".city-button").innerText;
+    }
 
     temperature.textContent = "Temp: " + data.current.temp + "°F";
     wind.textContent = "Wind: " + data.current.wind_speed + "MPH";
@@ -87,47 +94,83 @@ var todaysForecast = function(data) {
 
 var fiveForecast = function(data) {
     const popCard = document.createElement("div");
-    const popImage = document.createElement("img");
+    const popImage = document.querySelector("img");
     const popUL = document.createElement("ul");
     const popTemp = document.createElement("li");
     const popWind = document.createElement("li");
     const popHumid = document.createElement("li");
+    const weekDate = document.createElement("h2");
 
-    //for (var i = 0; i < data.daily.length; i++) {
+    if (data) {
+        popCard.classList.add("card");
+        weekDate.textContent = "X";
+        popUL.classList.add("card-info");
 
-    //}
+        console.log(data.daily.length);
 
-    temperature.textContent = "Temp: " + data.daily[i].temp + "°F";
-    wind.textContent = "Wind: " + data.daily[i].wind_speed + "MPH";
-    humidity.textContent = "Humidity: " + data.daily[i].humidity + "%";
-    weatherIcon.src = "http://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png" ;
-}
+        for (var i = 0; i < 5; i++) {
+            popTemp.textContent = "Temp: " + data.daily[i].temp.max + "°F";
+            popWind.textContent = "Wind: " + data.daily[i].wind_speed + "MPH";
+            popHumid.textContent = "Humidity: " + data.daily[i].humidity + "%";
+            popImage.src = "http://openweathermap.org/img/wn/" + data.daily[i].weather[0].icon + "@2x.png" ;
+
+            fiveDayForecast.appendChild(popCard);
+            popCard.appendChild(weekDate);
+            popCard.appendChild(popImage);
+            popCard.appendChild(popUL);
+            popUL.appendChild(popTemp);
+            popUL.appendChild(popWind);
+            popUL.appendChild(popHumid);
+            fiveDayForecast.appendChild(popCard.cloneNode(true));
+
+        };
+        
+    };
+};
 
 
 function saveSearch(city) {
-
     var getLocation = document.createElement("button");
     getLocation.classList.add("city-button");
     getLocation.textContent = city;
+    locale.push(getLocation.innerText);
 
     searchHistory.appendChild(getLocation);
 
-    localStorage.setItem("location", JSON.stringify(city));
-
-}
+    localStorage.setItem("location", JSON.stringify(locale));
+};
 
 function pullSearch() {
-    JSON.parse(localStorage.getItem("location"));
-}
+    var cities = JSON.parse(localStorage.getItem("location"));
+    console.log(cities)
+    if (!cities) {
+        searchHistory.textContent = " ";
+    } else {
+        for (var i = 0; i < cities.length; i++) {
+            var pullLocation = document.createElement("button");
+            pullLocation.classList.add("city-button");
+            pullLocation.textContent = cities[i];
+        
+            searchHistory.appendChild(pullLocation);
+        };
+    };
+};
 
 var buttonSearch = function(event) {
     event.preventDefault();
-    var city = this.innerText;
+    var city = event.target.innerText;
+    
+    console.log(city)
+    if (city) {
+        globalSearch(city);
+    };
+};
 
-    globalSearch(city);
-}
+var init = function() {
+    pullSearch();
+};
 
-pullSearch();
+init();
 
 searchForm.addEventListener("submit", submitCity);
 searchHistory.addEventListener("click", buttonSearch);

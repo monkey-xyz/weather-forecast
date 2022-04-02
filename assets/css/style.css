@@ -11,6 +11,7 @@ body {
     width: 100%;
     height: 100%;
     font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
 }
 
 #heading {
@@ -37,6 +38,8 @@ h1, h2, h3 {
 
 main {
     height: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto;
 }
 
 form {
@@ -166,14 +169,8 @@ button:active {
 
 .card-info {
     background: rgb(151, 151, 151);
-    font-size: 33px;
     width: 80%;
     height: auto;
-    position: absolute;
-    bottom: 0;
-    margin: 0;
-    right: 0;
-    padding-left: 0;
 }
 
 #weather-info li {
@@ -193,3 +190,12 @@ ul {
     list-style-type: none;
     font-size: 20px;
 }
+
+@media screen and (max-width: 768px) {
+    #city-container {
+        width: 100%;
+    }
+    #forecast-info {
+        width: 100%;
+    }
+};
