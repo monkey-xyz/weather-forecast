@@ -22,7 +22,7 @@ var submitCity = function (event) {
 
 
 var globalSearch = function (city) {
-    var geoCodeApi = 'http://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=5&appid=4956f3dda9aec433400a8f2f8bb5d4cd'
+    var geoCodeApi = 'https://api.openweathermap.org/geo/1.0/direct?q=' + city + '&limit=5&appid=4956f3dda9aec433400a8f2f8bb5d4cd'
 
     fetch(geoCodeApi)
     .then (function (response) {
